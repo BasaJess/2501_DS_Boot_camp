@@ -1,0 +1,3 @@
+pandas==2.2.2
+jupyterlab==3.6.3
+missingno==0.5.2

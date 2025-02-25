@@ -1,0 +1,43 @@
+CALL explain_rules()
+VAR current_turn = "X"
+VAR play_more = TRUE
+
+# Loop over several rounds
+LOOP while (play_more == TRUE):
+    VAR board = CALL create_new_board()
+    CALL show_board(board)
+    
+    # Loop over moves in game
+    LOOP while (CALL check_for_game_end(board) == FALSE):
+        OUTPUT "It's {current_turn}'s turn."
+        VAR next_move = CALL get_next_move()
+        CALL update_board(board, next_move, current_turn)
+        CALL show_board(board)
+        UPDATE current_turn = CALL switch_player(current_turn)
+  
+    VAR game_status = CALL check_for_game_end(board)
+    IF game_status == "X won": 
+        OUTPUT "Praise player 1!"
+    ELIF game_status == "O won": 
+        OUTPUT "Praise player 2!"
+    ELIF game_status == "Draw": 
+        OUTPUT "It's a draw!"
+
+    INPUT "Do you want to continue playing? (yes/no):" 
+    IF input != "yes":
+        SET play_more = FALSE
+
+
+DEF FUNCTION check_for_game_end(board):
+    IF CALL check_for_win(board):
+        RETURN current_turn + " won"
+    IF CALL check_for_draw(board):
+        RETURN "Draw"
+    RETURN FALSE
+
+
+DEF FUNCTION check_for_draw(board):
+    RETURN '-' NOT IN board
+
+DEF FUNCTION switch_player(current_move):
+    RETURN 'O' IF current_move == 'X' ELSE 'X'
