@@ -1,0 +1,8 @@
+[submodule "0128_Git_Excercise"]
+	path = 0128_Git_Excercise
+	url = git@github.com:BasaJess/250200_DS_Neuefisch.git
+
+[submodule "0128_Git_Excercise/0128_Git_Excercise/Repo_test_Ex_2"]
+  path = 0128_Git_Excercise/0128_Git_Excercise/Repo_test_Ex_2
+  url = git@github.com:BasaJess/250200_DS_Neuefisch.git
+
